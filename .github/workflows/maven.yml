@@ -24,5 +24,6 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: create docker image
       run: docker build -t sampad/helloworld:latest .
-    - name: Nexus IQ for GitHub Actions
-      run: docker push localhost:8081/sampad/helloworld:latest
+    - name: docker push
+      run: |
+        sampad/helloworld:latest
