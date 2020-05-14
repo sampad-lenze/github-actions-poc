@@ -28,7 +28,7 @@ jobs:
       uses: sonatype-nexus-community/iq-github-action@1.1.0
       with:
         # Nexus IQ Server URL
-        serverUrl: http://localhost:8081/repository/nexus_spring-helloworld/
+        serverUrl: http://nexus-iq-server
         # Username to connect to IQ Server for policy evaluation
         username: ${{ secrets.NEXUS_USERNAME }}  
         password: ${{ secrets.NEXUS_PASSWORD }}  
