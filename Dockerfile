@@ -1,13 +1,12 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM maven as builder
 
-# Refer to Maven build -> finalName
-ARG JAR_FILE=target/github-actions-poc.jar
+COPY . /source
+WORKDIR /source
 
-# cd /opt/app
-WORKDIR /opt/app
+RUN mvn clean package
 
-# cp target/github-actions-poc.jar /opt/app/app.jar
-COPY ${JAR_FILE} app.jar
 
-# java -jar /opt/app/app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk
+COPY --from=builder /source/target/*.jar application.jar
+
+ENTRYPOINT ["java", "-jar", "application.jar"]
