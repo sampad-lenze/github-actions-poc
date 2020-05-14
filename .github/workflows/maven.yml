@@ -25,16 +25,4 @@ jobs:
     - name: create docker image
       run: docker build -t sampad/helloworld:latest .
     - name: Nexus IQ for GitHub Actions
-      uses: sonatype-nexus-community/iq-github-action@1.1.0
-      with:
-        # Nexus IQ Server URL
-        serverUrl: http://nexus-iq-server
-        # Username to connect to IQ Server for policy evaluation
-        username: ${{ secrets.NEXUS_USERNAME }}  
-        password: ${{ secrets.NEXUS_PASSWORD }}  
-        # Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Nexus IQ Server.
-        applicationId: nexus_spring-helloworld
-        # Controls the stage the policy evaluation will be run against on the Nexus IQ Server.
-        stage: Build # default is Build
-        # This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.
-        target: ./target/
+      run: docker push localhost:8081/sampad/helloworld:latest
