@@ -30,6 +30,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: create docker image
-      run: docker build -t sampad/helloworld:latest .
+      run: docker build -t barman/sampad/helloworld:latest .
     - name: docker push
       run: docker push barman/sampad/helloworld:latest
