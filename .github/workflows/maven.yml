@@ -23,5 +23,5 @@ jobs:
     - name: Build the docker image and publish
       run: |
         docker build . --file Dockerfile --tag docker.pkg.github.com/sampad-lenze/github-actions-poc/app:1.0.0
-        docker login docker.pkg.github.com --username sampad-lenze --password ${{ secrets.DOCKER_PASSWORD }}
+        docker login docker.pkg.github.com --username sampad-lenze --password ${{ secrets.GITHUB_TOKEN }}
         docker push docker.pkg.github.com/sampad-lenze/github-actions-poc/app:1.0.0
