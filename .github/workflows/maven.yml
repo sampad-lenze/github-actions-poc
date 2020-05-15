@@ -29,5 +29,4 @@ jobs:
     - name: create docker image
       run: docker build -t sampad/helloworld:latest .
     - name: docker push
-      run: |
-        sampad/helloworld:latest
+      run: docker push sampad/helloworld:latest
