@@ -39,4 +39,5 @@ jobs:
         password: admin123
         format: maven2
         repository: docker-private
+        coordinates: groupId=github-actions-poc artifactId=github-actions-poc version=latest
         filename: helloworld-image
