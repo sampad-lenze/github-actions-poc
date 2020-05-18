@@ -37,5 +37,6 @@ jobs:
         serverUrl: http://localhost:8081/
         username: admin
         password: admin123
+        format: maven2
         repository: docker-private
         filename: helloworld-image
