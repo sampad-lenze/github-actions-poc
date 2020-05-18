@@ -28,7 +28,7 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: docker login
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        docker login 127.0.0.1:8083 -u admin -p admin123
     - name: create docker image
       run: docker build -t helloworld-image .
     - name: Nexus Repo Publish
