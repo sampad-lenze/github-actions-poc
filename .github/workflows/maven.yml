@@ -40,4 +40,5 @@ jobs:
         format: maven2
         repository: docker-private
         coordinates: groupId=github-actions-poc artifactId=github-actions-poc version=latest
+        assets: extension=jar
         filename: helloworld-image
