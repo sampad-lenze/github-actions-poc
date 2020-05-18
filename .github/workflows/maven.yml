@@ -7,7 +7,6 @@ on:
   push:
     branches: 
       - master
-      - release/*
   pull_request:
     branches: 
       - master
@@ -15,30 +14,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_USER: ${{ secrets.DOCKER_USER }}   
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: docker login
+    - name: Build the docker image and publish
       run: |
-        docker login 127.0.0.1:8083 -u admin -p admin123
-    - name: create docker image
-      run: docker build -t helloworld-image .
-    - name: Nexus Repo Publish
-      uses: sonatype-nexus-community/nexus-repo-github-action@master
-      with:
-        serverUrl: http://localhost:8081/
-        username: admin
-        password: admin123
-        format: maven2
-        repository: docker-private
-        coordinates: groupId=github-actions-poc artifactId=github-actions-poc version=latest
-        assets: extension=jar
-        filename: helloworld-image
+        docker build . --file Dockerfile --tag docker.pkg.github.com/sampad-lenze/github-actions-poc/app:1.0.0
+        docker login docker.pkg.github.com --username sampad-lenze --password ${{ secrets.GITHUB_TOKEN }}
+        docker push docker.pkg.github.com/sampad-lenze/github-actions-poc/app:1.0.0
