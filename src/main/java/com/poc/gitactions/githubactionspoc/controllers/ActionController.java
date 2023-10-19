@@ -9,6 +9,6 @@ public class ActionController {
 
     @GetMapping("/hello")
     public String hello(Model model) {
-        return "Hello";
+        return "Hello world";
     }
 }
