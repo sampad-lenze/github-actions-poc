@@ -11,6 +11,10 @@ on:
     branches: 
       - master
   workflow_dispatch:
+    inputs:
+      PR_Number: 
+        description: 'Pull request number'
+        required: true
 
 jobs:
   build:
